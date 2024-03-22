@@ -1,6 +1,7 @@
 package vista;
 
 import dao.tbPersonaDAO;
+import entity.Tbpersona;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,6 +22,7 @@ public class frmPersona extends javax.swing.JFrame {
         this.setResizable(false);
         limpiar();
         listarTabla("");
+        
     }
 
     /**
@@ -51,6 +53,7 @@ public class frmPersona extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbPersonaDatos = new javax.swing.JTable();
         btnLimpiar = new javax.swing.JButton();
+        btnBuscarId = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(null);
@@ -108,14 +111,13 @@ public class frmPersona extends javax.swing.JFrame {
         jPanel1.add(txtEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 300, 30));
         jPanel1.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 300, 30));
 
-        txtId.setEditable(false);
         txtId.setBackground(new java.awt.Color(255, 255, 255));
         txtId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdActionPerformed(evt);
             }
         });
-        jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 300, 30));
+        jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 170, 30));
 
         btnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnEliminar.setText("ELIMINAR");
@@ -172,6 +174,15 @@ public class frmPersona extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 310, -1, -1));
+
+        btnBuscarId.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnBuscarId.setText("BUSCAR");
+        btnBuscarId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarIdActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnBuscarId, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 380));
 
@@ -282,7 +293,7 @@ public class frmPersona extends javax.swing.JFrame {
     }//GEN-LAST:event_tbPersonaDatosMouseClicked
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-      limpiar();
+        limpiar();
         listarTabla("");
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
@@ -290,9 +301,29 @@ public class frmPersona extends javax.swing.JFrame {
         listarTabla(txtNombres.getText());
     }//GEN-LAST:event_txtNombresKeyReleased
 
+    private void btnBuscarIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarIdActionPerformed
+
+        if (txtId.getText().equals("")) {
+
+            JOptionPane.showMessageDialog(rootPane, "El campo id esta vacio");
+        } else {
+
+            int id = Integer.parseInt(txtId.getText());//pasamos el id
+            Tbpersona persona = pdao.buscarPersonaId(id);//pasmos el objeto a un objeto persona
+            //aqui es donde pasaremos los datos a los txt
+            txtNombres.setText(persona.getNombres());
+            txtApellidos.setText(persona.getApellidos());
+            txtEdad.setText(persona.getEdad() + "");
+            txtTelefono.setText(persona.getTelefono());
+
+        }
+
+
+    }//GEN-LAST:event_btnBuscarIdActionPerformed
+
     private void limpiar() {
 
-        txtId.setText("");
+        txtId.setText(pdao.idIncrementable());
         txtNombres.setText("");
         txtApellidos.setText("");
         txtEdad.setText("");
@@ -302,7 +333,7 @@ public class frmPersona extends javax.swing.JFrame {
 
     private void listarTabla(String nombres) {
 
-        pdao.listarPersonas(tbPersonaDatos ,nombres);
+        pdao.listarPersonas(tbPersonaDatos, nombres);
 
     }
 
@@ -342,6 +373,7 @@ public class frmPersona extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscarId;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
