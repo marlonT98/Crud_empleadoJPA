@@ -3,9 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Marlon/Documents/NetBeansProjects/crud_empleadoJPA/src/META-INF/persistence.xml</file>
             <file>file:/C:/Users/Marlon/Documents/NetBeansProjects/crud_empleadoJPA/src/controller/TbpersonaJpaController.java</file>
-            <file>file:/C:/Users/Marlon/Documents/NetBeansProjects/crud_empleadoJPA/src/entity/Tbpersona.java</file>
+            <file>file:/C:/Users/Marlon/Documents/NetBeansProjects/crud_empleadoJPA/src/vista/frmPersona.java</file>
+            <file>file:/C:/Users/Marlon/Documents/NetBeansProjects/crud_empleadoJPA/src/dao/tbPersonaDAO.java</file>
         </group>
     </open-files>
 </project-private>

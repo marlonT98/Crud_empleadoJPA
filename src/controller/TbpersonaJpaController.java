@@ -33,7 +33,6 @@ public class TbpersonaJpaController implements Serializable {
 
     public TbpersonaJpaController() {
     }
-    
 
     public void create(Tbpersona tbpersona) {
         EntityManager em = null;
@@ -51,25 +50,31 @@ public class TbpersonaJpaController implements Serializable {
 
     public void edit(Tbpersona tbpersona) throws NonexistentEntityException, Exception {
         EntityManager em = null;
+
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            tbpersona = em.merge(tbpersona);
-            em.getTransaction().commit();
-        } catch (Exception ex) {
-            String msg = ex.getLocalizedMessage();
-            if (msg == null || msg.length() == 0) {
-                Integer id = tbpersona.getIdtbPersona();
-                if (findTbpersona(id) == null) {
-                    throw new NonexistentEntityException("The tbpersona with id " + id + " no longer exists.");
-                }
+            Integer id = tbpersona.getIdtbPersona();
+
+            if (findTbpersona(id) == null) {//si no existe
+                throw new NonexistentEntityException("The tbpersona with id " + id + " no longer exists.");
+
+            } else {//si existe
+                tbpersona = em.merge(tbpersona);
+                em.getTransaction().commit();
             }
+
+        } catch (Exception ex) {
             throw ex;
+
         } finally {
+
             if (em != null) {
                 em.close();
             }
+
         }
+
     }
 
     public void destroy(Integer id) throws NonexistentEntityException {
@@ -138,5 +143,5 @@ public class TbpersonaJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }
