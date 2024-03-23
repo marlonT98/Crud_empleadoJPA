@@ -54,6 +54,7 @@ public class frmPersona extends javax.swing.JFrame {
         tbPersonaDatos = new javax.swing.JTable();
         btnLimpiar = new javax.swing.JButton();
         btnBuscarId = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(null);
@@ -111,7 +112,6 @@ public class frmPersona extends javax.swing.JFrame {
         jPanel1.add(txtEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 300, 30));
         jPanel1.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 300, 30));
 
-        txtId.setBackground(new java.awt.Color(255, 255, 255));
         txtId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdActionPerformed(evt);
@@ -183,6 +183,15 @@ public class frmPersona extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnBuscarId, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, -1, -1));
+
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton1.setText("Cerrar Sesion");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 310, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 380));
 
@@ -321,6 +330,18 @@ public class frmPersona extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnBuscarIdActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       
+        
+        
+       Login login = new Login();
+       login.setVisible(true);//se habre el login pero esta se cierra
+       this.dispose();
+        
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void limpiar() {
 
         txtId.setText(pdao.idIncrementable());
@@ -378,6 +399,7 @@ public class frmPersona extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
